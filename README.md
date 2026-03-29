@@ -1,79 +1,83 @@
-# IPL-MATCH-DATA-ANALYSIS
-Great! I can draft a full, professional README for your **IPL Match Data Analysis** project. Here's a well-structured example you can use:
-
----
-
 # IPL Match Data Analysis: Team Performance and Winning Patterns
 
-## 📖 Project Overview
+Project to analyze historical Indian Premier League (IPL) match data and visualize team performance, toss impact, venue effects, player awards, and season-wise trends using Streamlit and Plotly.
 
-This project analyzes Indian Premier League (IPL) match data to identify **team performance trends and winning patterns**. Using historical match statistics, the project provides insights into factors influencing match outcomes, such as team performance, player statistics, toss decisions, and venue conditions. The analysis can help teams, analysts, and fans understand patterns behind victories and defeats.
+**Project Structure**
 
-## 🛠️ Technologies Used
+IPL_Analysis_Project/
 
-* **Python** – Main programming language
-* **Pandas** – Data manipulation and analysis
-* **NumPy** – Numerical computations
-* **Matplotlib / Seaborn** – Data visualization
-* **Scikit-learn** – Machine learning algorithms (optional for predictive analysis)
-* **Jupyter Notebook** – Interactive development and demonstration
+- data/
+  - matches.csv <- Place the Kaggle `matches.csv` here
+- app.py
+- analysis.py
+- requirements.txt
+- README.md
 
-## 📊 Dataset
+Note: The project focuses on data analysis and visualizations. (Modeling UI removed.)
 
-The dataset contains historical IPL match records, including:
+UI / Visual design
+- The Streamlit app uses a subtle two-tone background and a vibrant gradient header for visual focus.
+- Section content is presented in white "cards" with rounded corners and soft shadows for improved readability.
+- Colors: deep-teal sidebar gradient and a cyan→violet header gradient were chosen for high contrast and modern appearance. You can customize these in `app.py` (CSS block at the top of the file).
 
-* Match date and season
-* Teams playing
-* Toss winner and decision
-* Venue information
-* Player performance stats
-* Match outcome
+Where to place dataset
 
+- Download `matches.csv` from the Kaggle IPL dataset and place it at `IPL_Analysis_Project/data/matches.csv`.
 
+Installation (Windows)
 
-## 🔄 Project Flow
+1. Create a virtual environment and activate it
 
-1. **Data Collection** – Load and clean IPL match dataset
-2. **Exploratory Data Analysis (EDA)** – Examine trends, correlations, and patterns
-3. **Data Visualization** – Generate graphs to visualize wins, losses, and performance metrics
-4. **Statistical Analysis** – Identify key factors affecting match outcomes
-5. **Machine Learning (Optional)** – Predict match winners using historical data
+```powershell
+python -m venv venv
+venv\Scripts\activate
+```
 
-## 📈 Features
+2. Install dependencies
 
-* Analyze **team performance over seasons**
-* Identify **winning patterns based on toss decisions and venues**
-* Visualize trends for **matches, players, and teams**
-* Predict possible outcomes using machine learning models
+```powershell
+pip install -r requirements.txt
+```
 
-## 💻 How to Run
+3. Run the Streamlit app
 
-1. Clone the repository:
+```powershell
+streamlit run app.py
+```
 
-   ```bash
-   git clone https://github.com/veeranjaneyulu87/IPL-MATCH-DATA-ANALYSIS.git
-   ```
-2. Navigate to the project folder:
+What the app shows
 
-   ```bash
-   cd IPL-MATCH-DATA-ANALYSIS
-   ```
-3. Open the Jupyter Notebook and run the analysis:
+- Team Performance: Total matches, wins and win percentage per team
+- Toss Analysis: Impact of toss winner on match outcome
+- Venue Analysis: Which stadiums favor which teams
+- Player Awards: Most Player of the Match awards
+- Season Trends: Top team per season (by wins)
+- ML Prediction Lab:
+  - Trains 3 algorithms: Logistic Regression, Random Forest, Gradient Boosting
+  - Shows 5 graphs:
+    1) Model metric comparison (bar)
+    2) Confusion matrix (heatmap)
+    3) Feature importance (bar)
+    4) Confidence distribution (histogram)
+    5) Predicted winner share (pie)
+  - Includes custom match winner prediction form
 
-   ```bash
-   jupyter notebook
-   ```
-4. Follow the notebook cells to explore EDA and visualizations.
+Data preprocessing details (in `analysis.py`)
 
-## 📌 Future Improvements
+- Loads `data/matches.csv` using pandas
+- Drops rows missing critical fields
+- Converts the `date` column to datetime and creates `match_year`
+- Removes unused columns like `id`, `umpire1`, `umpire2`, `umpire3`
+- Standardizes team names (mapping legacy names to current ones)
+- Creates `win_margin` (from runs or wickets) and `toss_win_match_win` flag
 
-* Incorporate player-level statistics for deeper insights
-* Implement more advanced machine learning models for match prediction
-* Build a web dashboard to visualize IPL statistics interactively
+Notes
 
-## 📚 References
+- This project uses only Python, Pandas, NumPy, Plotly and Streamlit as requested.
+- Optional logistic regression model was not added to keep the stack minimal and follow the requested libraries.
 
-* IPL official website: [https://www.iplt20.com](https://www.iplt20.com)
-* Kaggle IPL dataset: [https://www.kaggle.com](https://www.kaggle.com)
+Viva / Explanation pointers
 
-
+- Explain data cleaning steps: NA handling, date parsing, team standardization.
+- Explain each visualization and what it reveals about team advantage, toss influence, and venues.
+- Discuss limitations: winner labels rely on the CSV accuracy; mapping of team names is simple and may need expansion.
